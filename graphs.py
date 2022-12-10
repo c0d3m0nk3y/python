@@ -15,12 +15,7 @@ def plot_csv():
     air_quality.plot()
     plt.show()
 
-def plot_quad():
-    x = np.linspace(-10, 10, 1000)
-    y = x**2 + 2*x + 2
-    fig, ax = plt.subplots()
-    ax.plot(x, y)
-    plt.show()
+
 
 frame = customtkinter.CTkFrame(master=root)
 frame.pack(pady=20, padx=20, fill="both", expand=True)
@@ -30,6 +25,23 @@ label.pack()
 
 btn_csv = customtkinter.CTkButton(master=frame, text='CSV', command=plot_csv)
 btn_csv.pack()
+
+txt_a = customtkinter.CTkEntry(master=frame)
+txt_a.pack()
+txt_b = customtkinter.CTkEntry(master=frame)
+txt_b.pack()
+txt_c = customtkinter.CTkEntry(master=frame)
+txt_c.pack()
+
+def plot_quad():
+    a = int(txt_a.get())
+    b = int(txt_b.get())
+    c = int(txt_c.get())
+    x = np.linspace(-10000, 10000, 1000)
+    y = (a*x)**2 + b*x + c
+    fig, ax = plt.subplots()
+    ax.plot(x, y)
+    plt.show()
 
 btn_quad = customtkinter.CTkButton(master=frame, text='Quadratic', command=plot_quad)
 btn_quad.pack()
