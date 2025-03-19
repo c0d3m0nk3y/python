@@ -19,7 +19,7 @@ class SquirrelEncoder(json.JSONEncoder):
 
 
 squirrels = {"0": Squirrel("Fred", "PO369NX")}
-id = 0
+id = "0"
 
 
 @app.get("/")
@@ -30,6 +30,7 @@ def get_squirrels():
 
 @app.get("/spot/{id}")
 def get_squirrel(id):
+    print(type(id))
     squirrel = squirrels.get(id)
     return {
         "name": squirrel.name,
@@ -40,7 +41,7 @@ def get_squirrel(id):
 @app.put("/spot/{id}")
 def spot_squirrel(name, location):
     global id
-    id += 1
+    id = str(int(id) + 1)
     squirrel = Squirrel(name, location)
     squirrels[id] = squirrel
     return {
